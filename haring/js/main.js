@@ -11,7 +11,7 @@ var select = function(s) {
 		loop: false,
 		prerender: true,
 		autoplay: false,
-		path: '../anim/beam.json'
+		path: 'anim/beam.json'
 	},
     animHolderUfo = select('#animHolderUfo'),    
     animDataUfo = {
@@ -20,7 +20,7 @@ var select = function(s) {
 		loop: false,
 		prerender: true,
 		autoplay: false,
-		path: '../anim/ufo.json'
+		path: 'anim/ufo.json'
 	},
     animHolderDog = select('#animHolderDog'),    
     animDataDog = {
@@ -29,7 +29,7 @@ var select = function(s) {
 		loop: false,
 		prerender: true,
 		autoplay: false,
-		path: '../anim/dog.json'
+		path: 'anim/dog.json'
 	},
     animHolderHeart = select('#animHolderHeart'),    
     animDataHeart = {
@@ -38,7 +38,7 @@ var select = function(s) {
 		loop: true,
 		prerender: true,
 		autoplay: false,
-		path: '../anim/heart.json'
+		path: 'anim/heart.json'
 	},
     animHolderBoombox = select('#animHolderBoombox'),    
     animDataBoombox = {
@@ -47,7 +47,7 @@ var select = function(s) {
 		loop: false,
 		prerender: true,
 		autoplay: false,
-		path: '../anim/boombox.json'
+		path: 'anim/boombox.json'
 	},
     animBeam, 
     animUfo,
