@@ -12,7 +12,7 @@ var select = function(s) {
 		loop: true,
 		prerender: true,
 		autoplay: false,
-		path: '../anim/men/wolf.json'
+		path: 'anim/men/wolf.json'
 	},
     animHolderMonster = select('#animHolderMonster'),    
     animDataMonster = {
@@ -21,7 +21,7 @@ var select = function(s) {
 		loop: true,
 		prerender: true,
 		autoplay: false,
-		path: '../anim/men/monster.json'
+		path: 'anim/men/monster.json'
 	},
     animWerewolf,
     animMonster,

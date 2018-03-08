@@ -12,7 +12,7 @@ var select = function(s) {
 		loop: false,
 		prerender: true,
 		autoplay: false,
-		path: '../anim/women/heart.json'
+		path: 'anim/women/heart.json'
 	},
     animHolderTv = select('#animHolderTv'),    
     animDataTv = {
@@ -21,7 +21,7 @@ var select = function(s) {
 		loop: false,
 		prerender: true,
 		autoplay: false,
-		path: '../anim/women/tv.json'
+		path: 'anim/women/tv.json'
 	},
     animHeartWomen,
     animTv,
