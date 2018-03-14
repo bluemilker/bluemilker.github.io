@@ -37,7 +37,7 @@ var select = function(s) {
 		animType: 'svg',
 		loop: true,
 		prerender: true,
-		autoplay: false,
+		autoplay: true,
 		path: 'anim/heart.json'
 	},
     animHolderBoombox = select('#animHolderBoombox'),    
@@ -76,6 +76,8 @@ var select = function(s) {
 
  animDog = bodymovin.loadAnimation(animDataDog);
  animDog.addEventListener('DOMLoaded', function(){animDog.goToAndStop(1, true); console.log("dog")});
+
+
  animDog.setSpeed(1);
 
  animHeart = bodymovin.loadAnimation(animDataHeart);
@@ -115,13 +117,22 @@ function onDOMLoaded(e){
  //svg.setAttribute('class', 'tick');
     tlUfo = new TimelineMax({});
     tlUfo.to({frame:0}, 300/30, { 
-        // Original length was 840 frames, but we're truncating to 300 because the rest is empty
-        frame:300,
+        // originally had 840 frames
+        // truncating to 300 because the rest are dead frames
+        frame:300,                  
         ease:Linear.easeNone,
         onUpdate: function(){
-            animUfo.goToAndStop(Math.round(this.target.frame), true);
-                        //document.getElementById("outputText").value = "ufo: " + animUfo.currentFrame;
-        }
+            animUfo.goToAndStop(Math.round(this.target.frame), true);      //document.getElementById("outputText").value = "ufo: " + animUfo.currentFrame;
+        },
+        /*onStart: function () {
+            console.log("start");
+        },
+        onComplete: function () {
+            console.log("complete");
+        },
+        onReverseComplete: function () {
+            console.log("reverse complete");
+        }*/
     });
     tlBeam = new TimelineMax({});
     tlBeam.to({frame:0}, 43/30, {
@@ -131,7 +142,6 @@ function onDOMLoaded(e){
             animBeam.goToAndStop(Math.round(this.target.frame), true);
         }
     });
-    animDog.goToAndStop(1, true);
     tlDog = new TimelineMax({});
     tlDog.to({frame:1}, 292/30, {
         frame:292,
@@ -151,6 +161,7 @@ function onDOMLoaded(e){
     tlUfoComp.add(new TweenMax.to("#animHolderBeam", 0.01, {autoAlpha:0}), (75+50)/30);
     //tlUfoComp.add(new TweenMax.to("#animCompHolderUfo", 28, {autoAlpha:0}), 0);
     
+    /*
     tlHeart = new TimelineMax({});
     tlHeart.to({frame:0}, 180/30, {
         frame:180,
@@ -159,7 +170,7 @@ function onDOMLoaded(e){
             animHeart.goToAndStop(Math.round(this.target.frame), true);
         }
     });
-
+    */
     
     tlBoombox = new TimelineMax({});
     tlBoombox.to({frame:0}, 249/30, {
@@ -179,31 +190,31 @@ function onDOMLoaded(e){
         triggerElement: '#animCompHolderUfo', // starting scene, when reaching this element
         triggerHook: 'onLeave',
         offset: document.getElementById('animCompHolderUfo').clientHeight * -0.15,
-        duration: document.getElementById('animCompHolderUfo').clientHeight * 0.9
-    }); // the element we want to pin
+        //duration: document.getElementById('animCompHolderUfo').clientHeight
+    }); 
         
     // Add Scene to ScrollMagic Controller
     scene.setTween(tlUfoComp);
     scene.addTo(controller);
     scene.addIndicators();
 
+    /*
     var scene2 = new ScrollMagic.Scene({
         triggerElement: '#animHolderHeart',
-        //offset: -200,
-        triggerHook: 'onEnter',
-        duration: "100%"
+        offset: -200,
+        //duration: "100%"
     })
 
     scene2.setTween(tlHeart);
     scene2.addTo(controller);
     scene2.addIndicators();
-    
+    */
     
     var scene3 = new ScrollMagic.Scene({
-        triggerElement: '#animHolderBoombox',
+        triggerElement: '#animCompHolderBoombox',
+
         //offset: -200,
-        triggerHook: 'onEnter',
-        duration: "100%"
+        //duration: "100%"
     })
 
     scene3.setTween(tlBoombox);
