@@ -90,15 +90,15 @@ body {
 
 
 #animCompHolderHeart {
-    padding-bottom: 34%; /* allows us to set the height relative to the width */
-    top:914px;
-    margin-bottom: -34%
+    padding-bottom: 15%; /* allows us to set the height relative to the width */
+    top:976px;
+    margin-bottom: -15%
 }
 
 #animHolderHeart {
     top: 0%;
-    left:19%;
-    width: 58%;
+    left:39%;
+    width: 17%;
 }
 
 #animCompHolderBoombox {

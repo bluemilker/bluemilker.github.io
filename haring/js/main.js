@@ -38,7 +38,7 @@ var select = function(s) {
 		loop: true,
 		prerender: true,
 		autoplay: false,
-		path: 'anim/heart.json'
+		path: 'anim/beating_heart.json'
 	},
     animHolderBoombox = select('#animHolderBoombox'),    
     animDataBoombox = {
@@ -200,10 +200,13 @@ function onDOMLoaded(e){
     
     
     var scene3 = new ScrollMagic.Scene({
-        triggerElement: '#animHolderBoombox',
+        triggerElement: '#animCompHolderBoombox',
         //offset: -200,
-        triggerHook: 'onEnter',
-        duration: "100%"
+        //triggerHook: 'onEnter',
+        //duration: "100%"
+        offset: document.getElementById('animCompHolderBoombox').clientHeight * -.2,
+        duration: document.getElementById('animCompHolderBoombox').clientHeight * 1.8
+
     })
 
     scene3.setTween(tlBoombox);
