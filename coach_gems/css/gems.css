@@ -1,0 +1,54 @@
+body, html {
+  background-color: white;
+  height: 100%;
+  margin:0;
+  padding:0;
+  overflow: hidden;
+}
+
+button{
+  padding:10px;
+  cursor:pointer;
+    margin-top:20%;
+}
+
+.emitter {
+  background-color: #ddd;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  top: 40%;
+  left: 50%;
+  border: 2px solid #444;
+}
+.gem_grey {
+  position: absolute;
+  pointer-events: none; /*performance optimization*/
+    background-image:url('../images/disneygems_grey_4x.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.gem_red {
+  position: absolute;
+  pointer-events: none; /*performance optimization*/
+    background-image:url('../images/disneygems_red_4x.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.gem_greenpurple {
+  position: absolute;
+  pointer-events: none; /*performance optimization*/
+    background-image:url('../images/disneygems_greenpurple_4x.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#instructions {
+  position: fixed;
+  top: 10px;
+  text-align: center;
+  color: #999;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
