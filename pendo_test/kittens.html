@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://html5doctor.com/demos/history/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Kittens!</title>
+  <style>
+    html { background-color:#ddd; }
+    body { margin:1em auto; max-width:600px; background-color:#fff; border:solid 1px #aaa; padding:15px; font-family:Georgia,serif; }
+    h1 { font-family:Helvetica,Arial,sans-serif; float:left; width:30%; margin:0; }
+    nav { display:block; float:right; width:45%;}
+    ul { list-style:none; padding:0; margin:0; }
+    li { display:inline-block; padding:0; border-right:solid 1px #aaa; margin:.5em 0 0; }
+    li:last-child { border-right:0; }
+    a { color:rgb(0,144,210); padding:.2em 0.5em; }
+    a:hover { text-decoration:none; }
+    #content { clear:left; float:left; width:45%; margin-right:10%; line-height:1.4em; }
+    #photo { float:right; width:45%; margin-top:1em; }
+    .cf:before, .cf:after { content:""; display:table; }
+    .cf:after { clear:both; }
+  </style>
+    <script>
+  (function(apiKey){
+    (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
+      v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
+      o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+      y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
+      z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+
+    // Call this whenever information about your visitors becomes available
+    // Please use Strings, Numbers, or Bools for value types.
+    pendo.initialize({
+      visitor: {
+        id:              'VISITOR-UNIQUE-ID'   // Required if user is logged in
+        // email:        // Optional
+        // role:         // Optional
+
+        // You can add any additional visitor level key-values here,
+        // as long as it's not one of the above reserved names.
+      },
+
+      account: {
+        id:           'ACCOUNT-UNIQUE-ID' // Highly recommended
+        // name:         // Optional
+        // planLevel:    // Optional
+        // planPrice:    // Optional
+        // creationDate: // Optional
+
+        // You can add any additional account level key-values here,
+        // as long as it's not one of the above reserved names.
+      }
+    });
+  })('21bf0cd9-d7be-4d58-6dbc-066f574c91a7');
+</script>
+
+</head>
+
+<body class="cf">
+  <h1>Kittens!</h1>
+
+  <nav>
+    <ul class="cf">
+      <li><a href="https://html5doctor.com/demos/history/fluffy">Fluffy</a></li>
+      <li><a href="https://html5doctor.com/demos/history/socks">Socks</a></li>
+      <li><a href="https://html5doctor.com/demos/history/whiskers">Whiskers</a></li>
+      <li><a href="https://html5doctor.com/demos/history/bob">Bob</a></li>
+    </ul>
+  </nav>
+
+  <p id="content">Welcome to Kittens! Home of Fluffy, Socks, Whiskers and Bob. If you're not suffering from a cute overdose within the hour, then you really are a heartless bugger! Now lets look at some cats!</p>
+
+  <img src="http://placekitten.com/300/300" alt="A heartbreakingly cute kitten!" id="photo">
+
+  <script>
+    // Not the most elegant code but fit enough for this example. Enjoy the kitten goodness!
+    var contentEl = document.getElementById('content'),
+        photoEl = document.getElementById('photo'),
+        linkEls = document.getElementsByTagName('a'),
+        cats = {
+          fluffy: {
+            content: 'Fluffy!',
+            photo: 'http://placekitten.com/200/200'
+          },
+          socks: {
+            content: 'Socks!',
+            photo: 'http://placekitten.com/280/280'
+          },
+          whiskers: {
+            content: 'Whiskers!',
+            photo: 'http://placekitten.com/350/350'
+          },
+          bob: {
+            content: 'Just Bob.',
+            photo: 'http://placekitten.com/320/270'
+          }
+        };
+
+    // Switcheroo!
+    function updateContent(data) {
+      if (data == null)
+        return;
+
+      contentEl.textContent = data.content;
+      photoEl.src = data.photo;
+    }
+
+    // Load some mock JSON data into the page
+    function clickHandler(event) {
+      var cat = event.target.getAttribute('href').split('/').pop(),
+          data = cats[cat] || null; // In reality this could be an AJAX request
+
+      updateContent(data);
+
+      // Add an item to the history log
+      history.pushState(data, event.target.textContent, event.target.href);
+
+      return event.preventDefault();
+    }
+
+    // Attach event listeners
+    for (var i = 0, l = linkEls.length; i < l; i++) {
+      linkEls[i].addEventListener('click', clickHandler, true);
+    }
+
+    // Revert to a previously saved state
+    window.addEventListener('popstate', function(event) {
+      console.log('popstate fired!');
+
+      updateContent(event.state);
+    });
+
+    // Store the initial content so we can revisit it later
+    history.replaceState({
+      content: contentEl.textContent,
+      photo: photoEl.src
+    }, document.title, document.location.href);
+  </script>
+
+
+
+<span style="border-radius: 3px !important; text-indent: 20px !important; width: auto !important; padding: 0px 4px 0px 0px !important; text-align: center !important; font: bold 11px/20px &quot;Helvetica Neue&quot;, Helvetica, sans-serif !important; color: rgb(255, 255, 255) !important; background: url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMzBweCIgd2lkdGg9IjMwcHgiIHZpZXdCb3g9Ii0xIC0xIDMxIDMxIj48Zz48cGF0aCBkPSJNMjkuNDQ5LDE0LjY2MiBDMjkuNDQ5LDIyLjcyMiAyMi44NjgsMjkuMjU2IDE0Ljc1LDI5LjI1NiBDNi42MzIsMjkuMjU2IDAuMDUxLDIyLjcyMiAwLjA1MSwxNC42NjIgQzAuMDUxLDYuNjAxIDYuNjMyLDAuMDY3IDE0Ljc1LDAuMDY3IEMyMi44NjgsMC4wNjcgMjkuNDQ5LDYuNjAxIDI5LjQ0OSwxNC42NjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIj48L3BhdGg+PHBhdGggZD0iTTE0LjczMywxLjY4NiBDNy41MTYsMS42ODYgMS42NjUsNy40OTUgMS42NjUsMTQuNjYyIEMxLjY2NSwyMC4xNTkgNS4xMDksMjQuODU0IDkuOTcsMjYuNzQ0IEM5Ljg1NiwyNS43MTggOS43NTMsMjQuMTQzIDEwLjAxNiwyMy4wMjIgQzEwLjI1MywyMi4wMSAxMS41NDgsMTYuNTcyIDExLjU0OCwxNi41NzIgQzExLjU0OCwxNi41NzIgMTEuMTU3LDE1Ljc5NSAxMS4xNTcsMTQuNjQ2IEMxMS4xNTcsMTIuODQyIDEyLjIxMSwxMS40OTUgMTMuNTIyLDExLjQ5NSBDMTQuNjM3LDExLjQ5NSAxNS4xNzUsMTIuMzI2IDE1LjE3NSwxMy4zMjMgQzE1LjE3NSwxNC40MzYgMTQuNDYyLDE2LjEgMTQuMDkzLDE3LjY0MyBDMTMuNzg1LDE4LjkzNSAxNC43NDUsMTkuOTg4IDE2LjAyOCwxOS45ODggQzE4LjM1MSwxOS45ODggMjAuMTM2LDE3LjU1NiAyMC4xMzYsMTQuMDQ2IEMyMC4xMzYsMTAuOTM5IDE3Ljg4OCw4Ljc2NyAxNC42NzgsOC43NjcgQzEwLjk1OSw4Ljc2NyA4Ljc3NywxMS41MzYgOC43NzcsMTQuMzk4IEM4Ljc3NywxNS41MTMgOS4yMSwxNi43MDkgOS43NDksMTcuMzU5IEM5Ljg1NiwxNy40ODggOS44NzIsMTcuNiA5Ljg0LDE3LjczMSBDOS43NDEsMTguMTQxIDkuNTIsMTkuMDIzIDkuNDc3LDE5LjIwMyBDOS40MiwxOS40NCA5LjI4OCwxOS40OTEgOS4wNCwxOS4zNzYgQzcuNDA4LDE4LjYyMiA2LjM4NywxNi4yNTIgNi4zODcsMTQuMzQ5IEM2LjM4NywxMC4yNTYgOS4zODMsNi40OTcgMTUuMDIyLDYuNDk3IEMxOS41NTUsNi40OTcgMjMuMDc4LDkuNzA1IDIzLjA3OCwxMy45OTEgQzIzLjA3OCwxOC40NjMgMjAuMjM5LDIyLjA2MiAxNi4yOTcsMjIuMDYyIEMxNC45NzMsMjIuMDYyIDEzLjcyOCwyMS4zNzkgMTMuMzAyLDIwLjU3MiBDMTMuMzAyLDIwLjU3MiAxMi42NDcsMjMuMDUgMTIuNDg4LDIzLjY1NyBDMTIuMTkzLDI0Ljc4NCAxMS4zOTYsMjYuMTk2IDEwLjg2MywyNy4wNTggQzEyLjA4NiwyNy40MzQgMTMuMzg2LDI3LjYzNyAxNC43MzMsMjcuNjM3IEMyMS45NSwyNy42MzcgMjcuODAxLDIxLjgyOCAyNy44MDEsMTQuNjYyIEMyNy44MDEsNy40OTUgMjEuOTUsMS42ODYgMTQuNzMzLDEuNjg2IiBmaWxsPSIjYmQwODFjIj48L3BhdGg+PC9nPjwvc3ZnPg==&quot;) 3px 50% / 14px 14px no-repeat rgb(189, 8, 28) !important; position: absolute !important; opacity: 1 !important; z-index: 8675309 !important; display: none; cursor: pointer !important; border: none !important; -webkit-font-smoothing: antialiased !important;">Save</span><span style="border-radius: 12px; width: 24px !important; height: 24px !important; background: url(&quot;data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxtYXNrIGlkPSJtIj48cmVjdCBmaWxsPSIjZmZmIiB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI2IiByeT0iNiIvPjxyZWN0IGZpbGw9IiMwMDAiIHg9IjUiIHk9IjUiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgcng9IjEiIHJ5PSIxIi8+PHJlY3QgZmlsbD0iIzAwMCIgeD0iMTAiIHk9IjAiIHdpZHRoPSI0IiBoZWlnaHQ9IjI0Ii8+PHJlY3QgZmlsbD0iIzAwMCIgeD0iMCIgeT0iMTAiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0Ii8+PC9tYXNrPjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IiNmZmYiIG1hc2s9InVybCgjbSkiLz48L3N2Zz4=&quot;) 50% 50% / 14px 14px no-repeat rgba(0, 0, 0, 0.4) !important; position: absolute !important; opacity: 1 !important; z-index: 8675309 !important; display: none; cursor: pointer !important; border: none !important;"></span></body></html>
